@@ -1,0 +1,308 @@
+/*
+1. УНИВЕРСАЛЬНЫЙ СЕЛЕКТОР (*)
+Применяется ко ВСЕМ элементам
+  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+2. СЕЛЕКТОР ПО ТЕГУ (element)
+Применяется к конкретным тегам
+   */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f2f5;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/*
+3. СЕЛЕКТОР ПО КЛАССУ (.class)
+Применяется к элементам с классом
+  */
+.app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.notes {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ========================================
+4. СЕЛЕКТОР ПО ID (#id)
+Применяется к элементу с уникальным ID
+   ======================================== */
+#titleInput {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+#textInput {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+#saveBtn {
+    padding: 10px 25px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-right: 10px;
+}
+
+#saveBtn:hover {
+    background: #45a049;
+}
+
+#cancelBtn {
+    padding: 10px 25px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#cancelBtn:hover {
+    background: #e68900;
+}
+
+#notesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+#notesCount {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* ========================================
+   5. СЕЛЕКТОР ПО АТРИБУТУ ([attribute])
+   Применяется к элементам с атрибутом
+   ======================================== */
+
+/* Все input с типом text */
+input[type="text"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Все textarea */
+textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Все элементы с атрибутом placeholder */
+[placeholder] {
+    color: #666;
+}
+
+/* Все элементы с атрибутом contenteditable */
+[contenteditable="true"] {
+    background: #f9f9f9;
+}
+
+/* ========================================
+   6. КОМБИНИРОВАННЫЕ СЕЛЕКТОРЫ
+   ======================================== */
+
+/* Вложенные селекторы (потомки) */
+.form input,
+.form textarea,
+.form button {
+    margin-bottom: 10px;
+}
+
+/* Дочерние селекторы (только прямые потомки) */
+.notes > h2 {
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+}
+
+/* Соседние элементы (+) */
+#saveBtn + #cancelBtn {
+    /* Стиль для кнопки Отмена, если она идет сразу после Сохранить */
+}
+
+/* Общие соседи (~) */
+/* Все элементы после */
+
+/* ========================================
+   7. ПСЕВДОКЛАССЫ
+   ======================================== */
+
+/* :hover - при наведении */
+.note-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* :first-child - первый элемент */
+.note-item:first-child {
+    border-top: 3px solid #4CAF50;
+}
+
+/* :last-child - последний элемент */
+.note-item:last-child {
+    border-bottom: 3px solid #4CAF50;
+}
+
+/* :nth-child - каждый второй */
+.note-item:nth-child(even) {
+    background: #fafafa;
+}
+
+/* :not - исключение */
+.note-item:not(.editing) {
+    /* Стиль для всех .note-item кроме .editing */
+}
+
+/* ========================================
+   8. СТИЛИ ДЛЯ ЗАМЕТОК
+   ======================================== */
+
+.note-item {
+    background: white;
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.note-item .note-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+
+.note-item .note-text {
+    font-size: 14px;
+    color: #666;
+    word-wrap: break-word;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.note-item .note-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.note-item .note-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.note-item .note-actions button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.note-item .note-actions .edit-btn {
+    background: #2196F3;
+    color: white;
+}
+
+.note-item .note-actions .edit-btn:hover {
+    background: #1976D2;
+}
+
+.note-item .note-actions .delete-btn {
+    background: #f44336;
+    color: white;
+}
+
+.note-item .note-actions .delete-btn:hover {
+    background: #d32f2f;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #999;
+    padding: 40px 0;
+    font-size: 16px;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.note-item {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    #notesContainer {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+}
